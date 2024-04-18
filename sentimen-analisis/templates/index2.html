@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Analisis Sentimen</title>
+    <link href="/static/bootstrap-5.3.2/css/bootstrap.min.css" rel="stylesheet" >
+  </head>
+  <body class="bg-body-tertiary">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary-subtle">
+      <div class="container">
+        <a class="navbar-brand" href="/">Analisis Sentimen</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="visualisasi">Visualisasi</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+    <div class="container text-center">
+      <h2 class="mt-3 ">Analisis Sentimen</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6 my-3">
+          <form action="predict" method="POST" class=""> 
+            <div class="input-group my-3">
+              <input type="text" name="Sentiment" class="form-control" id="Sentiment" placeholder="Masukkan text " required>
+              <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+          <br>
+          <h3 class="my-3">Prediksi Sentimen secara Massal</h3>
+          <form action="klasifikasi" method="POST" class="" enctype="multipart/form-data">
+            <div class="input-group mb-3">
+              <input type="file" name="fileUpload" class="form-control" id="fileUpload" required>
+              <button class="btn btn-secondary" type="submit" id="btnUpload">Upload</button>
+            </div>
+          </form>
+          <p class="text-start">File Name : {{ filename }}</p>
+          <!-- <p class="text-start">File Content : {{ df_text, predict }}</p> -->
+          <p><a class="link-opacity-100" target="_blank" href="https://docs.google.com/spreadsheets/d/1r-NsQffAsVcn8c6d4yV9Jp4dG0WtFlffokNtqbkMwGg/edit?usp=sharing">Silakan download Template Klasifikasi berikut</a></p>
+
+    
+          <!-- <a class="#"> <img src="/static/img/research.png" width="40px" class="mt-5"></a> -->
+          <h3 class="mt-2">HASIL PREDIKSI</h3>
+          <h5 class="">Sentimen dari text : </h5> <h3> {{ Sentiment }} </h3>
+          <div>
+            <h5>Menunjukan hasil </h5>
+            {% if prediction == 'positive'%}
+            <h2 style="color:blue;">Positif</h2>
+            {% elif prediction == 'negative'%}
+            <h2 style="color:red;">Negatif</h2>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/static/bootstrap-5.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
